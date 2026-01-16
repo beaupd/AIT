@@ -1,0 +1,21 @@
+{
+  "name": "@ait/cli",
+  "version": "0.1.0",
+  "description": "CLI interface for AIT",
+  "bin": {
+    "ait": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@ait/shared": "*",
+    "axios": "^1.6.2",
+    "commander": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  }
+}

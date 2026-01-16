@@ -1,0 +1,19 @@
+{
+  "name": "ait",
+  "version": "0.1.0",
+  "description": "Local Structured AI Coding Assistant",
+  "private": true,
+  "workspaces": [
+    "extension",
+    "daemon",
+    "shared",
+    "cli"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

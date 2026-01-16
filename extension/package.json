@@ -1,0 +1,81 @@
+{
+  "name": "ait",
+  "displayName": "AIT - Local Structured AI Coding Assistant",
+  "description": "Local-first AI coding assistant with structured project intelligence",
+  "version": "0.1.0",
+  "publisher": "ait",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ait.explainFile",
+        "title": "AIT: Explain this file"
+      },
+      {
+        "command": "ait.refactorFunction",
+        "title": "AIT: Refactor this function"
+      },
+      {
+        "command": "ait.debugTest",
+        "title": "AIT: Why does this test fail?"
+      },
+      {
+        "command": "ait.summarizeStandards",
+        "title": "AIT: Summarize project conventions"
+      },
+      {
+        "command": "ait.indexProject",
+        "title": "AIT: Index project"
+      }
+    ],
+    "configuration": {
+      "title": "AIT",
+      "properties": {
+        "ait.daemonPort": {
+          "type": "number",
+          "default": 3001,
+          "description": "Port for the AIT daemon"
+        },
+        "ait.ollamaUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama API URL"
+        },
+        "ait.embeddingModel": {
+          "type": "string",
+          "default": "nomic-embed-text",
+          "description": "Ollama embedding model"
+        },
+        "ait.generationModel": {
+          "type": "string",
+          "default": "llama3.2:3b",
+          "description": "Ollama generation model"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@ait/shared": "*",
+    "axios": "^1.6.2"
+  }
+}
