@@ -6,13 +6,21 @@ build:
 install: build
 	@echo "Installing extension to Zed..."
 	@mkdir -p ~/.local/share/zed/extensions/ait
-	@cp target/wasm32-wasip2/release/ait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ 2>/dev/null || \
-	 cp target/wasm32-wasip2/release/libait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ait_zed_extension.wasm
+	@if [ -f extension.wasm ]; then \
+		cp extension.wasm ~/.local/share/zed/extensions/ait/; \
+		echo "✓ Copied extension.wasm"; \
+	else \
+		echo "Error: extension.wasm not found. Run 'make build' first."; \
+		exit 1; \
+	fi
 	@cp extension.toml ~/.local/share/zed/extensions/ait/
+	@echo "✓ Copied extension.toml"
 	@echo "Extension installed! Restart Zed to use it."
 
 clean:
 	@cargo clean
+	@rm -f extension.wasm
+	@echo "Cleaned build artifacts and extension.wasm"
 
 test:
 	@echo "Note: Zed extensions are tested by installing and using in Zed"

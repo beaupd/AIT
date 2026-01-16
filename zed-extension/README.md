@@ -18,29 +18,60 @@ Zed editor extension for AIT (Local Structured AI Coding Assistant).
 
 ## Building
 
+The build process automatically creates `extension.wasm` in the root directory, which is required for Zed's "Install Dev Extension" feature.
+
+### Using the build script (recommended):
+
 ```bash
 cd zed-extension
-cargo build --release --target wasm32-wasi
+./build.sh
+```
+
+Or using Make:
+
+```bash
+cd zed-extension
+make build
+```
+
+This will:
+1. Build the extension for `wasm32-wasip2` target
+2. Automatically copy the WASM file to `extension.wasm` in the root directory
+
+### Manual build:
+
+```bash
+cd zed-extension
+cargo build --release --target wasm32-wasip2
+cp target/wasm32-wasip2/release/libait_zed_extension.wasm extension.wasm
 ```
 
 ## Installation
 
-### Development Installation
+### Using "Install Dev Extension" in Zed (Recommended)
 
-1. Build the extension (see above)
-2. Copy the built WASM file to Zed's extensions directory:
-   ```bash
-   cp target/wasm32-wasi/release/ait_zed_extension.wasm ~/.local/share/zed/extensions/ait/
-   cp extension.toml ~/.local/share/zed/extensions/ait/
-   ```
+1. Build the extension (see above) - this creates `extension.wasm` in the root
+2. In Zed, go to Extensions → "Install Dev Extension"
+3. Select the `zed-extension` directory
+4. Zed will automatically detect `extension.toml` and `extension.wasm`
 
-3. Restart Zed
+### Using Make install
+
+```bash
+cd zed-extension
+make install
+```
+
+This will copy the extension to `~/.local/share/zed/extensions/ait/` and you'll need to restart Zed.
 
 ### Using Zed CLI
 
 ```bash
-zed extensions install --dev ./zed-extension
+cd zed-extension
+zed extensions install --dev .
 ```
+
+Make sure `extension.wasm` exists in the directory before running this command.
 
 ## Configuration
 
@@ -95,3 +126,35 @@ If you see "daemon is not running" errors:
 - Check daemon port matches configuration (default: 3001)
 - Verify firewall isn't blocking localhost connections
 - Check daemon logs for errors
+
+### Extension Not Detected by "Install Dev Extension"
+
+If Zed doesn't detect your extension when using "Install Dev Extension":
+
+1. **Verify `extension.wasm` exists:**
+   ```bash
+   ls -la zed-extension/extension.wasm
+   ```
+   If it doesn't exist, run `make build` or `./build.sh`
+
+2. **Check `extension.toml` is in the root:**
+   ```bash
+   ls -la zed-extension/extension.toml
+   ```
+
+3. **Verify the directory structure:**
+   ```
+   zed-extension/
+   ├── extension.toml    ✓ Required
+   ├── extension.wasm    ✓ Required (created by build)
+   ├── Cargo.toml
+   └── src/
+   ```
+
+4. **Check Zed logs:**
+   - In Zed: View → Command Palette → "Show Logs"
+   - Look for extension loading errors
+
+5. **Ensure you're selecting the correct directory:**
+   - When clicking "Install Dev Extension", select the `zed-extension` folder itself
+   - Not a parent directory or subdirectory
