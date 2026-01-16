@@ -9,14 +9,14 @@ if ! command -v cargo &> /dev/null; then
     exit 1
 fi
 
-# 2. Update target to wasm32-wasip1 (Replaces deprecated wasm32-wasi)
-if ! rustup target list --installed | grep -q "wasm32-wasip1"; then
-    echo "Installing wasm32-wasip1 target..."
-    rustup target add wasm32-wasip1
+# 2. Update target to wasm32-wasip2 (Latest WASM target for Zed extensions)
+if ! rustup target list --installed | grep -q "wasm32-wasip2"; then
+    echo "Installing wasm32-wasip2 target..."
+    rustup target add wasm32-wasip2
 fi
 
 # 3. Build using the correct target
 echo "Building extension..."
-cargo build --release --target wasm32-wasip1
+cargo build --release --target wasm32-wasip2
 
 echo "Build complete!"

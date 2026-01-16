@@ -7,8 +7,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-# Use the latest version of the API available in 2026
-zed_extension_api = "0.1"
+# Use the latest version of the API (v0.7.0 compatible with Zed 0.205.x+)
+zed_extension_api = "0.7.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-# Note: Avoid reqwest/tokio unless using a WASI-compatible polyfill

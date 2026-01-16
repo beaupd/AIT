@@ -6,8 +6,8 @@ build:
 install: build
 	@echo "Installing extension to Zed..."
 	@mkdir -p ~/.local/share/zed/extensions/ait
-	@cp target/wasm32-wasi/release/ait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ 2>/dev/null || \
-	 cp target/wasm32-wasi/release/libait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ait_zed_extension.wasm
+	@cp target/wasm32-wasip2/release/ait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ 2>/dev/null || \
+	 cp target/wasm32-wasip2/release/libait_zed_extension.wasm ~/.local/share/zed/extensions/ait/ait_zed_extension.wasm
 	@cp extension.toml ~/.local/share/zed/extensions/ait/
 	@echo "Extension installed! Restart Zed to use it."
 
