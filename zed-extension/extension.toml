@@ -1,10 +1,9 @@
-[extension]
-name = "AIT - Local Structured AI Coding Assistant"
 id = "ait"
-description = "Local-first AI coding assistant with structured project intelligence"
+name = "AIT - Local Structured AI Coding Assistant"
 version = "0.1.0"
 schema_version = 1
 authors = ["AIT Contributors"]
+description = "Local-first AI coding assistant with structured project intelligence"
 repository = "https://github.com/your-org/AIT"
 
 [[capabilities]]
