@@ -8,11 +8,6 @@ authors = ["AIT Contributors"]
 repository = "https://github.com/your-org/AIT"
 
 [[capabilities]]
-kind = "http"
-host = "localhost"
-path = ["**"]
-
-[[capabilities]]
 kind = "process:exec"
 command = "node"
 args = ["**"]
