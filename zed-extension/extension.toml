@@ -7,11 +7,15 @@ schema_version = 1
 authors = ["AIT Contributors"]
 repository = "https://github.com/your-org/AIT"
 
-[capabilities]
-granted = [
-    { kind = "http", host = "localhost", path = ["**"] },
-    { kind = "process:exec", command = "node", args = ["**"] },
-]
+[[capabilities]]
+kind = "http"
+host = "localhost"
+path = ["**"]
+
+[[capabilities]]
+kind = "process:exec"
+command = "node"
+args = ["**"]
 
 [slash_commands.explain_file]
 description = "Explain the current file using AIT"
