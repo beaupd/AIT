@@ -1,33 +1,22 @@
 #!/bin/bash
-
-# Build script for AIT Zed Extension
-
 set -e
 
 echo "Building AIT Zed Extension..."
 
-# Check if Rust is installed
+# 1. Check for Rust
 if ! command -v cargo &> /dev/null; then
     echo "Error: Rust/Cargo is not installed"
-    echo "Install from: https://rustup.rs/"
     exit 1
 fi
 
-# Check if wasm32-wasi target is installed
-if ! rustup target list --installed | grep -q "wasm32-wasi"; then
-    echo "Installing wasm32-wasi target..."
-    rustup target add wasm32-wasi
+# 2. Update target to wasm32-wasip1 (Replaces deprecated wasm32-wasi)
+if ! rustup target list --installed | grep -q "wasm32-wasip1"; then
+    echo "Installing wasm32-wasip1 target..."
+    rustup target add wasm32-wasip1
 fi
 
-# Build the extension
+# 3. Build using the correct target
 echo "Building extension..."
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 
-echo ""
 echo "Build complete!"
-echo ""
-echo "To install in Zed:"
-echo "  zed extensions install --dev ."
-echo ""
-echo "Or manually copy to:"
-echo "  ~/.local/share/zed/extensions/ait/"
