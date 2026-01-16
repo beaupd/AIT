@@ -1,0 +1,39 @@
+[extension]
+name = "AIT - Local Structured AI Coding Assistant"
+id = "ait"
+description = "Local-first AI coding assistant with structured project intelligence"
+version = "0.1.0"
+authors = ["AIT Contributors"]
+
+[capabilities]
+granted = [
+    { kind = "http", host = "localhost", path = ["**"] },
+    { kind = "process:exec", command = "node", args = ["**"] },
+]
+
+[slash_commands.explain_file]
+description = "Explain the current file using AIT"
+requires_argument = false
+
+[slash_commands.refactor_function]
+description = "Refactor the selected function using AIT"
+requires_argument = true
+
+[slash_commands.debug_test]
+description = "Analyze why a test fails using AIT"
+requires_argument = false
+
+[slash_commands.summarize_standards]
+description = "Summarize project conventions and standards"
+requires_argument = false
+
+[slash_commands.index_project]
+description = "Index the current project"
+requires_argument = false
+
+[settings]
+[settings.ait]
+daemon_port = { default = 3001, type = "number" }
+ollama_url = { default = "http://localhost:11434", type = "string" }
+embedding_model = { default = "nomic-embed-text", type = "string" }
+generation_model = { default = "llama3.2:3b", type = "string" }

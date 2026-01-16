@@ -245,6 +245,7 @@ The system is **model‑agnostic**. Models are replaceable.
 ## 🧰 Interfaces
 
 - **VS Code Extension** (primary)
+- **Zed Extension** (Rust-based, WebAssembly)
 - **CLI** for power users and automation
 - Future: LSP‑style integration for other editors
 

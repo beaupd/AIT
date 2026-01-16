@@ -211,6 +211,50 @@ The daemon exposes a REST API:
 - `OLLAMA_TIMEOUT` - Request timeout in ms (default: `30000`)
 - `PORT` - Daemon port (default: `3001`)
 
+## Zed Extension
+
+### Building
+
+```bash
+cd zed-extension
+./build.sh
+```
+
+### Installation
+
+```bash
+# Development installation
+zed extensions install --dev ./zed-extension
+
+# Or manually copy to:
+# ~/.local/share/zed/extensions/ait/
+```
+
+### Usage in Zed
+
+Type `/` in Zed and select an AIT command:
+
+- `/ait:explain_file` - Explain the current file
+- `/ait:refactor_function <description>` - Refactor selected code
+- `/ait:debug_test` - Analyze test failures
+- `/ait:summarize_standards` - Show project standards
+- `/ait:index_project` - Index the project
+
+### Configuration
+
+Configure in Zed settings (Settings → Extensions → ait):
+
+```json
+{
+  "ait": {
+    "daemon_port": 3001,
+    "ollama_url": "http://localhost:11434",
+    "embedding_model": "nomic-embed-text",
+    "generation_model": "llama3.2:3b"
+  }
+}
+```
+
 ## Troubleshooting
 
 ### Daemon won't start
